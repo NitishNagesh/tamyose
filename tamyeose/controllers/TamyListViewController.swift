@@ -34,6 +34,8 @@ class TamyListViewController: UITableViewController {
         let newItem4 = Item()
         newItem4.title = "fourth item"
         ItemArray.append(newItem4)
+        
+        loadItems()
      
         }
     
@@ -90,7 +92,7 @@ class TamyListViewController: UITableViewController {
              let encoder = PropertyListEncoder()
             do
             {
-                print(self.ItemArray)
+                
                 let data = try encoder.encode(self.ItemArray)
            try data.write(to: self.dataFilePath!)
                 
@@ -112,7 +114,20 @@ class TamyListViewController: UITableViewController {
             
         
         alert.addAction(action)
+        
         present(alert, animated: true, completion: nil)
     }
+    func loadItems(){
+        let data =  try? Data(contentsOf: dataFilePath!)
+        let decoder = PropertyListDecoder()
+        do{
+             ItemArray = try decoder.decode([Item].self, from: data!)
+        }  catch
+        {
+          print("error is ,\(error)" )
+        
+      
+    }
+}
 }
 

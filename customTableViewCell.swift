@@ -20,8 +20,6 @@ class customTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    override func didAddSubview(_ subview: UIView) {
-        <#code#>
-    }
+   
     
 }
